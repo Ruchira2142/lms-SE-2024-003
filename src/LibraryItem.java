@@ -1,0 +1,56 @@
+package lms.model;
+
+public abstract class LibraryItem {
+    private String id;
+    private String title;
+    private boolean isBorrowed;
+
+    public LibraryItem(String id, String title) {
+        setId(id);
+        setTitle(title);
+        this.isBorrowed = false;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        if (id == null || id.isBlank()) {
+            throw new IllegalArgumentException("ID cannot be null or blank.");
+        }
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        if (title == null || title.isBlank()) {
+            throw new IllegalArgumentException("Title cannot be null or blank.");
+        }
+        this.title = title;
+    }
+
+    public boolean isBorrowed() {
+        return isBorrowed;
+    }
+
+    public void borrowItem() {
+        this.isBorrowed = true;
+    }
+
+    public void returnItem() {
+        this.isBorrowed = false;
+    }
+
+    public double calculateLateFee(int daysLate) {
+        return daysLate * 10.0;
+    }
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + " [ID=" + id + ", Title=" + title + ", Borrowed=" + isBorrowed + "]";
+    }
+}
